@@ -3,12 +3,12 @@
 Repositório para criação do Software Critical Roll.
 
 <h3 style="text-align: justify;">Status atual do sistema</h3>
-<p style="text-align: justify;">Sistema parcialmente completo.
-* Complicação atual: fazer comunicação com SQL.</p>
+Sistema parcialmente completo.
+* Complicação atual: fazer comunicação com SQL.
 
 # Passos para Implementação
 <h3>Passo 01: Criar Tabéla SQL</h3>
-<p style="text-align: justify;">Abra o phpMyAdmin ou qualquer outro cliente SQL e crie um banco de dados para armazenar os logins e senhas. No projeto atual o banco de dados foi nomeado como "testelogin". Em seguida, no arquivo createTables.sql (dentro da pasta db), cole o seguinte código SQL para criar a tabela de usuários:</p>
+Abra o phpMyAdmin ou qualquer outro cliente SQL e crie um banco de dados para armazenar os logins e senhas. No projeto atual o banco de dados foi nomeado como "testelogin". Em seguida, no arquivo createTables.sql (dentro da pasta db), cole o seguinte código SQL para criar a tabela de usuários:
 <!-- /wp:tadv/classic-paragraph -->
 
 <!-- wp:code -->
