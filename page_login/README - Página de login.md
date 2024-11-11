@@ -5,7 +5,7 @@ Repositório para criação do Software Critical Roll.
 <h3 style="text-align: justify;">Status atual do sistema</h3>
 Sistema parcialmente completo.
 
-* Complicação atual: fazer comunicação com SQL.
+* __Complicação atual:__ fazer comunicação com SQL.
 
 # Passos para Implementação
 <h3>Passo 01: Criar Tabéla SQL</h3>
@@ -18,6 +18,27 @@ Abra o phpMyAdmin ou qualquer outro cliente SQL e crie um banco de dados para ar
     username VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:tadv/classic-paragraph -->
+
+<h3>Passo 02: Configure o Node.js</h3>
+Abra o terminal (prompt de comando) e vá até a pasta onde se localiza o projeto
+<!-- /wp:tadv/classic-paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>cd C:\projeto\...
+</code></pre>
+<!-- /wp:code -->
+
+<!-- wp:tadv/classic-paragraph -->
+
+Depois, inicialize o Node.js:
+<!-- /wp:tadv/classic-paragraph -->
+
+<!-- wp:code -->
+<pre class="wp-block-code"><code>npm init -y
 </code></pre>
 <!-- /wp:code -->
 
