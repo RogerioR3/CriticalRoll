@@ -4,6 +4,7 @@ Repositório para criação do Software Critical Roll.
 
 <h3 style="text-align: justify;">Status atual do sistema</h3>
 Sistema parcialmente completo.
+
 * Complicação atual: fazer comunicação com SQL.
 
 # Passos para Implementação
