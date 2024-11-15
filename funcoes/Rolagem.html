@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rolagem de Dados</title>
+  <!--->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    #resultado {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+  <!---->
+</head>
+<body>
+  <h1>Rolagem de Dados</h1>
+  <p>Clique em um dos botões para rolar um dado!</p>
+
+  <!-- Botões para rolar os dados -->
+  <button onclick="rolarDadoTipo(6)">Rolar d6</button>
+  <button onclick="rolarDadoTipo(8)">Rolar d8</button>
+  <button onclick="rolarDadoTipo(10)">Rolar d10</button>
+  <button onclick="rolarDadoTipo(12)">Rolar d12</button>
+  <button onclick="rolarDadoTipo(20)">Rolar d20</button>
+  <button onclick="rolarDadoTipo(100)">Rolar d100</button>
+  
+  <div id="resultado"></div>
+
+  <script>
+    // Função para rolar o dado
+    function rolarDado(lados) {
+      return Math.floor(Math.random() * lados) + 1;
+    }
+
+    // Função chamada ao clicar no botão
+    function rolarDadoTipo(lados) {
+      let resultado = rolarDado(lados);
+      document.getElementById('resultado').innerText = `Resultado: ${resultado}`;
+    }
+    
+  </script>
+        
+</body>
+</html>

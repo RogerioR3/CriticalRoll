@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Personagens com Inventário</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f7f7f7;
+    }
+    .container {
+      width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+    }
+    button {
+      background-color: #5cb85c;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #4cae4c;
+    }
+    #listaPersonagens {
+      margin-top: 20px;
+      list-style-type: none;
+      padding: 0;
+    }
+    #listaPersonagens li {
+      padding: 10px;
+      background-color: #f9f9f9;
+      margin: 5px 0;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .actions button {
+      background-color: #d9534f;
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .actions button:hover {
+      background-color: #c9302c;
+    }
+    .inventario {
+      margin-top: 20px;
+      border-top: 2px solid #ddd;
+      padding-top: 10px;
+    }
+    .inventario ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .inventario li {
+      padding: 5px;
+      background-color: #f0f0f0;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Adicionar Personagem</h1>
+    
+    <!-- Formulário para inserir dados do personagem -->
+    <input type="text" id="nomePersonagem" placeholder="Nome do personagem" />
+    <input type="text" id="classePersonagem" placeholder="Classe do personagem" />
+    <input type="number" id="nivelPersonagem" placeholder="Nível do personagem" min="1" max="20" />
+    <button onclick="adicionarPersonagem()">Adicionar Personagem</button>
+
+    <h2>Lista de Personagens</h2>
+    <ul id="listaPersonagens"></ul>
+  </div>
+
+  <div class="container" id="containerInventario" style="display: none;">
+    <h2>Inventário do Personagem</h2>
+    <input type="text" id="itemInventario" placeholder="Nome do item" />
+    <button onclick="adicionarItemInventario()">Adicionar Item</button>
+
+    <div class="inventario">
+      <h3>Itens:</h3>
+      <ul id="listaInventario"></ul>
+    </div>
+    <button onclick="voltarParaPersonagens()">Voltar</button>
+  </div>
+
+  <script>
+    // Variável para armazenar os personagens
+    let personagens = [];
+
+    // Função para adicionar um personagem à lista
+    function adicionarPersonagem() {
+      // Pega os valores dos campos do formulário
+      const nome = document.getElementById('nomePersonagem').value;
+      const classe = document.getElementById('classePersonagem').value;
+      const nivel = document.getElementById('nivelPersonagem').value;
+
+      // Valida os campos
+      if (nome.trim() === '' || classe.trim() === '' || nivel.trim() === '') {
+        alert('Todos os campos devem ser preenchidos!');
+        return;
+      }
+
+      // Cria o objeto do personagem
+      const personagem = {
+        nome,
+        classe,
+        nivel,
+        inventario: []
+      };
+
+      // Adiciona o personagem à lista
+      personagens.push(personagem);
+      atualizarListaPersonagens();
+
+      // Limpa os campos de entrada
+      document.getElementById('nomePersonagem').value = '';
+      document.getElementById('classePersonagem').value = '';
+      document.getElementById('nivelPersonagem').value = '';
+    }
+
+    // Função para atualizar a lista de personagens na tela
+    function atualizarListaPersonagens() {
+      const listaPersonagens = document.getElementById('listaPersonagens');
+      listaPersonagens.innerHTML = ''; // Limpa a lista atual
+
+      personagens.forEach((personagem, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${personagem.nome} (${personagem.classe}) - Nível: ${personagem.nivel}
+                        <button onclick="verInventario(${index})">Ver Inventário</button>`;
+        listaPersonagens.appendChild(li);
+      });
+    }
+
+    // Função para ver o inventário de um personagem
+    function verInventario(index) {
+      const personagem = personagens[index];
+
+      // Mostra a seção do inventário e esconde a lista de personagens
+      document.querySelector('.container').style.display = 'none';
+      document.getElementById('containerInventario').style.display = 'block';
+
+      // Atualiza a lista de itens do inventário
+      atualizarInventario(personagem);
+      
+      // Armazena o índice do personagem
+      document.getElementById('containerInventario').setAttribute('data-index', index);
+    }
+
+    // Função para voltar à lista de personagens
+    function voltarParaPersonagens() {
+      document.querySelector('.container').style.display = 'block';
+      document.getElementById('containerInventario').style.display = 'none';
+    }
+
+    // Função para adicionar um item ao inventário do personagem
+    function adicionarItemInventario() {
+      const itemNome = document.getElementById('itemInventario').value;
+
+      if (itemNome.trim() === '') {
+        alert('O nome do item não pode estar vazio!');
+        return;
+      }
+
+      const indexPersonagem = document.getElementById('containerInventario').getAttribute('data-index');
+      const personagem = personagens[indexPersonagem];
+
+      // Adiciona o item ao inventário do personagem
+      personagem.inventario.push(itemNome);
+
+      // Limpa o campo de entrada do item
+      document.getElementById('itemInventario').value = '';
+
+      // Atualiza a lista de itens do inventário
+      atualizarInventario(personagem);
+    }
+
+    // Função para atualizar a lista de inventário
+    function atualizarInventario(personagem) {
+      const listaInventario = document.getElementById('listaInventario');
+      listaInventario.innerHTML = ''; // Limpa a lista de itens
+
+      personagem.inventario.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        listaInventario.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>
