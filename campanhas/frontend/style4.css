@@ -1,0 +1,75 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background: linear-gradient(120deg, #000000, #440000);
+  color: #888888;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main-container {
+  display: flex;
+  flex: 1;
+}
+.left-panel {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background: rgb(0, 0, 0);
+  overflow-y: auto;
+}
+.hidden {
+  display: none;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: #7700ff;
+  color: #fff;
+  transition: background 0.3s;
+  margin-bottom: 10px;
+}
+button:hover {
+  background: #8400ff;
+}
+.chat-container, .historico-container, .fichas-container {
+  background: rgb(255, 255, 255);
+  border-radius: 8px;
+  padding: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+input, select {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+}
+.inventario {
+  margin-top: 10px;
+}
+.inventario input {
+  width: 70%;
+  margin-right: 5px;
+}
+	
+canvas {
+  border: 1px solid #000;
+  margin-top: 20px;
+  background-color: #fff; 
+  background-image: linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px); 
+  background-size: 50px 50px;
+}

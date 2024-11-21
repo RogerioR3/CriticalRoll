@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Campanhas</title>
+    <link rel="stylesheet" href="frontend/campanha_style.css">
+	<link rel="icon" href="imagens/icone_dado2.png" type="icone_dado2/png">
+    
+</head>
+<h2>Criar Nova Campanha</h2>
+
+
+<form id="campaignForm">
+  <label for="name">Nome:</label>
+  <input type="text" id="name" name="name" required>
+  <br>
+  <label for="description">Descrição:</label>
+  <textarea id="description" name="description" placeholder="Descrição sobre a campanha..." required></textarea>
+  <br>
+  <label for="rules">Sistema de Regras:</label>
+  <textarea id="rules" name="rules" placeholder="Descrição do sistema de regras..." required></textarea>
+  <br>
+  <label for="user_id">ID do Usuário:</label>
+  <input type="number" id="user_id" name="user_id" required>
+  <br>
+  <button type="submit">Criar Campanha</button>
+</form>
+
+<div id="response"></div>
+
+<script>
+  const form = document.getElementById('campaignForm');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get('name'),
+      description: formData.get('description'),
+      rule_system: formData.get('rule_system'),
+      user_id: formData.get('user_id'),
+    };
+
+    try {
+      const response = await fetch('/api/campaigns', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      document.getElementById('response').innerText = `Campanha criada: ${result.name}`;
+    } catch (err) {
+      console.error(err);
+      alert('Erro ao criar a campanha');
+    }
+  });
+</script>
+
+
