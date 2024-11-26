@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CriticalRoll</title>
+  <link rel="stylesheet" href="frontend/style4.css">
+  <link rel="icon" href="imagens/icone_dado.png" type="icone_dado/png">
+
+</head>
+<body>
+
+    <h1>Insira nome do mapa</h1>
+
+<canvas id="mapaCanvas" width="800" height="600"></canvas>
+
+<div class="controls">
+  <label for="uploadImagem">Upload de Imagem:</label>
+  <input type="file" id="uploadImagem" accept="image/*">
+  <br><br>
+  <button onclick="limparMapa()">Limpar Mapa</button>
+</div>
+
+<!-- Código do Mapa -->
+<script type="text/javascript" src="scripts/principal_1.js"></script><!---->
+
+  </body>
+    </div>
+    
+	<!-- Painel direito -->
+    <div class="left-panel">
+        <h1>CriticalRoll</h1>
+  
+        <div id="resultado" style="margin-top: 20px; font-size: 36px;"></div>
+    <div class="right-panel">
+      <!-- Botão para alternar entre chat e fichas -->
+      <button onclick="alternarPainel()">Chat/Fichas</button>
+
+      <!-- Chat e Histórico -->
+      <div id="chat-historico">
+        <div class="chat-container" id="chat">
+          <h2>Chat</h2>
+        </div>
+        <div class="chat-input-group">
+          <input type="text" id="chatInput" placeholder="Digite sua mensagem">
+          <button onclick="enviarMensagem()">Enviar</button>
+        </div>
+        <div>
+            <button onclick="rolarDadoTipo(6)">Rolar d6</button>
+            <button onclick="rolarDadoTipo(8)">Rolar d8</button>
+            <button onclick="rolarDadoTipo(10)">Rolar d10</button>
+            <button onclick="rolarDadoTipo(12)">Rolar d12</button>
+            <button onclick="rolarDadoTipo(20)">Rolar d20</button>
+            <button onclick="rolarDadoTipo(100)">Rolar d100</button>
+          </div>
+
+        <div class="historico-container" id="historico">
+          <h2>Histórico de Rolagens</h2>
+        </div>
+      </div>
+
+      <!-- Fichas -->
+      <div id="fichas" class="hidden">
+        <div class="fichas-container">
+          <h2>Fichas de Personagem</h2>
+          <form id="fichaForm" onsubmit="criarPersonagem(event)">
+			
+            <p>Nome: <input type="text" id="nomePersonagem" placeholder="Nome do Personagem" required></p>
+			<p>Raça: <select id="RaçaPersonagem">
+                <option value="Anão">Anão</option>
+                <option value="Elfo">Elfo</option>
+                <option value="Halfling">Halfling</option>
+                <option value="Humano">Humano</option>
+                <option value="Draconato">Draconato</option>
+                <option value="Gnomo">Gnomo</option>
+                <option value="Meio-Elfo">Meio-Elfo</option>
+                <option value="Meio-Orc">Meio-Orc</option>
+                <option value="Tiefling">Tiefling</option>
+              </select></p>
+			<p>Classe: <select id="classePersonagem">
+              <option value="Bárbaro">Bárbaro</option>
+              <option value="Bardo">Bardo</option>
+              <option value="Bruxo">Bruxo</option>
+              <option value="Clérigo">Clérigo</option>
+              <option value="Drúida">Drúida</option>
+              <option value="Feiticeiro">Feiticeiro</option>
+              <option value="Guerreiro">Guerreiro</option>
+              <option value="Ladino">Ladino</option>
+              <option value="Mago">Mago</option>
+              <option value="Monge">Monge</option>
+              <option value="Paladino">Paladino</option>
+              <option value="Patrulheiro">Patrulheiro</option>
+            </select></p>
+            <p>Nível: <input type="number" id="nivelPersonagem" placeholder="Nível" min="1" value="1" max="20" required></p>
+            <p>Experiência: <input type="number" id="experienciaPersonagem" placeholder="Experiência Atual" min="0" value="0" required></p>
+            <button type="submit">Criar Personagem</button>
+          </form>
+          <h3>Inventário</h3>
+          <div class="inventario">
+            <input type="text" id="itemInventario" placeholder="Adicionar Item">
+            <button onclick="adicionarItem()">Adicionar</button>
+          </div>
+          <div id="listaFichas"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Código do Chat/Fichas e Dados -->
+  <script type="text/javascript" src="scripts/principal_2.js"></script><!---->
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrar</title>
+    <link rel="stylesheet" href="frontend/style.css">
+	<link rel="icon" href="imagens/icone_dado.png" type="icone_dado/png">
+    <script>
+        function validatePasswords() {
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirm_password").value;
+            const message = document.getElementById("message");
+            
+            if (password !== confirmPassword) {
+                message.textContent = "As senhas não coincidem.";
+                message.style.color = "red";
+                return false;
+            } else {
+                message.textContent = "";
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Registrar</h2>
+    <form action="/register" method="POST" onsubmit="return validatePasswords()">
+        <label for="username">Usuário</label>
+        <input type="text" id="username" name="username" required>
+        
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+        
+        <label for="confirm_password">Confirme a Senha</label>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+        
+        <span id="message"></span> <!-- Mensagem de validação -->
+        
+        <button type="submit">Registrar</button>
+    </form>
+</body>
+</html>

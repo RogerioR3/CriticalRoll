@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Personagens com Inventário</title>
+  <link rel="stylesheet" href="frontend/style3.css">
+  <link rel="icon" href="imagens/icone_dado2.png" type="icone_dado2/png">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Adicionar Personagem</h1>
+    
+    <!-- Formulário para inserir dados do personagem -->
+    <input type="text" id="nomePersonagem" placeholder="Nome do personagem" />
+    <input type="text" id="classePersonagem" placeholder="Classe do personagem" />
+    <input type="number" id="nivelPersonagem" placeholder="Nível do personagem" min="1" max="20" />
+    <button onclick="adicionarPersonagem()">Adicionar Personagem</button>
+
+    <h2>Lista de Personagens</h2>
+    <ul id="listaPersonagens"></ul>
+  </div>
+
+  <div class="container" id="containerInventario" style="display: none;">
+    <h2>Inventário do Personagem</h2>
+    <input type="text" id="itemInventario" placeholder="Nome do item" />
+    <button onclick="adicionarItemInventario()">Adicionar Item</button>
+
+    <div class="inventario">
+      <h3>Itens:</h3>
+      <ul id="listaInventario"></ul>
+    </div>
+    <button onclick="voltarParaPersonagens()">Voltar</button>
+  </div>
+
+  <script>
+    // Variável para armazenar os personagens
+    let personagens = [];
+
+    // Função para adicionar um personagem à lista
+    function adicionarPersonagem() {
+      // Pega os valores dos campos do formulário
+      const nome = document.getElementById('nomePersonagem').value;
+      const classe = document.getElementById('classePersonagem').value;
+      const nivel = document.getElementById('nivelPersonagem').value;
+
+      // Valida os campos
+      if (nome.trim() === '' || classe.trim() === '' || nivel.trim() === '') {
+        alert('Todos os campos devem ser preenchidos!');
+        return;
+      }
+
+      // Cria o objeto do personagem
+      const personagem = {
+        nome,
+        classe,
+        nivel,
+        inventario: []
+      };
+
+      // Adiciona o personagem à lista
+      personagens.push(personagem);
+      atualizarListaPersonagens();
+
+      // Limpa os campos de entrada
+      document.getElementById('nomePersonagem').value = '';
+      document.getElementById('classePersonagem').value = '';
+      document.getElementById('nivelPersonagem').value = '';
+    }
+
+    // Função para atualizar a lista de personagens na tela
+    function atualizarListaPersonagens() {
+      const listaPersonagens = document.getElementById('listaPersonagens');
+      listaPersonagens.innerHTML = ''; // Limpa a lista atual
+
+      personagens.forEach((personagem, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `${personagem.nome} (${personagem.classe}) - Nível: ${personagem.nivel}
+                        <button onclick="verInventario(${index})">Ver Inventário</button>`;
+        listaPersonagens.appendChild(li);
+      });
+    }
+
+    // Função para ver o inventário de um personagem
+    function verInventario(index) {
+      const personagem = personagens[index];
+
+      // Mostra a seção do inventário e esconde a lista de personagens
+      document.querySelector('.container').style.display = 'none';
+      document.getElementById('containerInventario').style.display = 'block';
+
+      // Atualiza a lista de itens do inventário
+      atualizarInventario(personagem);
+      
+      // Armazena o índice do personagem
+      document.getElementById('containerInventario').setAttribute('data-index', index);
+    }
+
+    // Função para voltar à lista de personagens
+    function voltarParaPersonagens() {
+      document.querySelector('.container').style.display = 'block';
+      document.getElementById('containerInventario').style.display = 'none';
+    }
+
+    // Função para adicionar um item ao inventário do personagem
+    function adicionarItemInventario() {
+      const itemNome = document.getElementById('itemInventario').value;
+
+      if (itemNome.trim() === '') {
+        alert('O nome do item não pode estar vazio!');
+        return;
+      }
+
+      const indexPersonagem = document.getElementById('containerInventario').getAttribute('data-index');
+      const personagem = personagens[indexPersonagem];
+
+      // Adiciona o item ao inventário do personagem
+      personagem.inventario.push(itemNome);
+
+      // Limpa o campo de entrada do item
+      document.getElementById('itemInventario').value = '';
+
+      // Atualiza a lista de itens do inventário
+      atualizarInventario(personagem);
+    }
+
+    // Função para atualizar a lista de inventário
+    function atualizarInventario(personagem) {
+      const listaInventario = document.getElementById('listaInventario');
+      listaInventario.innerHTML = ''; // Limpa a lista de itens
+
+      personagem.inventario.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        listaInventario.appendChild(li);
+      });
+    }
+  </script>
+
+</body>
+</html>

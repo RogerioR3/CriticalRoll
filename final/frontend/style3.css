@@ -1,0 +1,87 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.container {
+  width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+input, select, button {
+  width: 95%;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background-color: #5cb85c;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  width: 100%;
+  background-color: #4cae4c;
+}
+
+#listaPersonagens {
+  margin-top: 20px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#listaPersonagens li {
+  padding: 10px;
+  background-color: #f9f9f9;
+  margin: 5px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions button {
+  background-color: #d9534f;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background-color: #c9302c;
+}
+
+.inventario {
+  margin-top: 20px;
+  border-top: 2px solid #ddd;
+  padding-top: 10px;
+}
+
+.inventario ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.inventario li {
+  padding: 5px;
+  background-color: #f0f0f0;
+  margin: 5px 0;
+  border-radius: 4px;
+}

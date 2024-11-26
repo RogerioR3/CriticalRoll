@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa Interativo</title>
+  <link rel="stylesheet" href="frontend/style2.css">
+  <link rel="icon" href="imagens/icone_dado2.png" type="icone_dado2/png">
+</head>
+<body>
+
+  <h1>Insira nome do mapa</h1>
+
+  <canvas id="mapaCanvas" width="800" height="600"></canvas>
+
+  <div class="controls">
+    <label for="uploadImagem">Upload de Imagem:</label>
+    <input type="file" id="uploadImagem" accept="image/*">
+    <br><br>
+    <button onclick="limparMapa()">Limpar Mapa</button>
+  </div>
+
+<!-- Código do Mapa -->
+<script type="text/javascript" src="scripts/movimento_1.js"></script><!---->
+
+</body>
+</html>
